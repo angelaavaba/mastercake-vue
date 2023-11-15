@@ -43,7 +43,8 @@ export default {
     }
   },
   methods: {
-    async login() {
+    async login(event) {
+      event.preventDefault();
       const requestBody = {
         usrn: this.username,
         password: this.pass
