@@ -30,7 +30,6 @@
 
 <script>
 import axios from 'axios';
-import console from 'console';
 
 export default {
   name: 'App',
@@ -56,7 +55,8 @@ export default {
         `${serveUrl}users/login`,
         requestBody
       );
-      console.log(response);
+
+      console.log(response)
     }
   }
 }
