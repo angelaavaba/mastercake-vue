@@ -4,8 +4,8 @@
       <b-row>
         <b-col></b-col>
         <b-col cols="6">
-          <b-card title="Register">
-          <b-form @submit="register">
+          <b-card title="Login">
+          <b-form @submit="login">
 
 
             <b-form-group label="Username">
@@ -16,20 +16,7 @@
               <b-form-input v-model="pass" type="password" placeholder="Enter your password" required></b-form-input>
             </b-form-group>
 
-            <b-form-group label="Birthdate">
-              <b-form-input v-model="birthdate" type="date" placeholder="Enter your birthdate"></b-form-input>
-            </b-form-group>
-
-            <b-form-group label="Address">
-              <b-form-input v-model="address" placeholder="Enter your address"></b-form-input>
-            </b-form-group>
-            
-            <b-form-group label="Gender">
-              <b-form-input v-model="gender" placeholder="Enter your gender (Masculino, Femenino, Other)"></b-form-input>
-            </b-form-group>
-
-
-            <b-button type="submit" variant="primary">Register</b-button>
+            <b-button type="submit" variant="primary">Login</b-button>
           </b-form>
         </b-card>
 
@@ -45,36 +32,31 @@
 import axios from 'axios';
 
 export default {
-  name:'App',
+  name: 'App',
   components: {
 
   },
-  data(){
-    return{
+  data() {
+    return {
       username: "",
-      pass: "",
-      birthdate: "",
-      address: "",
-      gender: ""
+      pass: ""
     }
   },
-  methods:{
-    async register(event){
+  methods: {
+    async login(event) {
       event.preventDefault();
       const requestBody = {
         usrn: this.username,
-        password: this.pass,
-        fechaNacimiento: this.birthdate,
-        domicilio: this.address,
-        sexo: this.gender
+        password: this.pass
       }
 
       const serveUrl = "https://kind-lime-meerkat-gear.cyclic.app/";
 
       const response = await axios.post(
-        `${serveUrl}users/registrar`,
+        `${serveUrl}users/login`,
         requestBody
       );
+
       console.log(response)
     }
   }
