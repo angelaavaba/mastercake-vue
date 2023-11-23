@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import router from '@/router';
 import axios from 'axios';
 
 export default {
@@ -50,14 +51,25 @@ export default {
 
       const serveUrl = "https://kind-lime-meerkat-gear.cyclic.app/";
 
+
+  try{
       const response = await axios.post(
         `${serveUrl}users/login`,
         requestBody
       );
 
       console.log(response)
+      if (response && response.data && response.data.jwt){
+        localStorage.setItem("jwt",response.data.jwt);
+        router.push({name:"Dashboard"})
+      }else{
+        alert("Login Erroneo");
+      }  
+    }catch(err){
+      alert("Login Erroneo");
     }
   }
+}
 }
 </script>
 
