@@ -29,7 +29,11 @@ const routes = [
       {
       path:'categorias',
       component: () => import(/* webpackChunkName: "about" */ '../views/CategoriasView.vue')
-      }
+      }, 
+      {
+        path:'productos',
+        component: () => import(/* webpackChunkName: "about" */ '../views/ProductosView.vue')
+        }
     ]
   }
 ]

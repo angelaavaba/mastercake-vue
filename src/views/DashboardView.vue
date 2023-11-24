@@ -1,8 +1,11 @@
 <template>
   <div>
     <b-sidebar visible id="sidebar-1" title="Sidebar" shadow>
-     Ventanas de catalogo
+     Ventanas de catalogos
+     <br> 
      <router-link to="dashboard/categorias">Catalogo de Categorias</router-link>
+     <br>
+     <router-link to="dashboard/productos">Catalogo de Productos</router-link>
     </b-sidebar>
     <router-view></router-view>
   </div>

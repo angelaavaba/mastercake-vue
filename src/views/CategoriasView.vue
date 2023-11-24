@@ -1,9 +1,37 @@
 <template>
-  <div>
-    
-     Vista de Categoria
-    
-  </div>
+  <b-container>
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="6">
+        <b-card title="Categoría">
+          <b-form @submit="nuevaCategoria">
+            <b-form-group
+                label="Nombre de la Categoria"
+            >
+              <b-form-input
+                  v-model="nombre"
+                  placeholder="Captura el nombre de tu categoria"
+                  required
+              ></b-form-input>
+            </b-form-group>
+            <br>
+            <b-form-group
+                label="Descripcion"
+            >
+              <b-form-input
+                  v-model="desc"
+                  placeholder="Captura tu descripcion"
+                  required
+              ></b-form-input>
+            </b-form-group>
+            <br>
+            <b-button type="submit" variant="primary">Crear Categoria</b-button>
+          </b-form>
+        </b-card>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -11,28 +39,35 @@ import axios from 'axios';
 
 export default {
   name: 'App',
+  components: {
+
+  },
   data() {
     return {
-      username: "",
-      pass: ""
+      nombre:"",
+      desc:""
     }
   },
   methods: {
-    async login(event) {
+    async nuevaCategoria(event){
       event.preventDefault();
+      const tokenAutenticacion = localStorage.getItem("jwt");
       const requestBody = {
-        usrn: this.username,
-        password: this.pass
+        name: this.nombre,
+        description: this.desc
       }
-
-      const serveUrl = "https://kind-lime-meerkat-gear.cyclic.app/";
+      const serverUrl = "https://kind-lime-meerkat-gear.cyclic.app/";
 
       const response = await axios.post(
-        `${serveUrl}users/login`,
-        requestBody
+          `${serverUrl}category/`,
+          requestBody,
+          {
+            headers: {
+              'Authorization': `Barer ${tokenAutenticacion}`
+            } 
+          }
       );
-
-      console.log(response)
+      console.log(response);
     }
   }
 }
