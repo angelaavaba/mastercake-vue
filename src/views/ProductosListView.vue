@@ -2,7 +2,7 @@
     <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2 class="mb-0">Lista de Productos</h2>
-      <button class="btn btn-primary" @click="goToCategories">Crear Producto</button>
+      <button class="btn btn-primary" @click="goToCreateProducts">Crear Producto</button>
     </div>
       <table class="table table-bordered table-hover">
         <thead class="thead-dark">
@@ -19,13 +19,17 @@
         <tbody>
           <tr v-for="(product, index) in products" :key="product._id">
             <th scope="row">{{ index + 1 }}</th>
-            <td>{{ product.image}}</td>
+            <td>
+              <img :src="product.image" alt="Product Image" style="max-width: 100px; max-height: 100px;" />
+            </td>
             <td>{{ product.product }}</td>
             <td>{{ product.description }}</td>
             <td>{{ product.category }}</td>
-            <td>{{ product.price }}</td>
+            <td>${{ product.price }}</td>
             <td>
-                <button class="btn btn-danger btn-sm" v-on:click="deleteProduct(product._id)">Eliminar</button>
+              <button class="btn btn-danger btn-sm" v-on:click="deleteProduct(product._id)">
+              <i class="bi bi-trash3-fill"></i>
+              </button>
             </td>
           </tr>
         </tbody>
@@ -79,8 +83,8 @@
         }
       },
 
-      goToCategories() {
-      this.$router.push({ name: 'CatalogoCategorias' });
+      goToCreateProducts() {
+      this.$router.push({ name: 'CatalogoProductos' });
     }
     }
  }

@@ -21,12 +21,19 @@
               <b-form-input v-model="desc" placeholder="Captura la descripción de tu producto" required></b-form-input>
             </b-form-group>
             <br>
+            <b-form-group label="Imagen">
+              <b-form-input v-model="img" placeholder="Ingresa el link de la imagen" required></b-form-input>
+            </b-form-group>
+            <br>
             <b-button type="submit" variant="primary">Crear Producto</b-button>
           </b-form>
         </b-card>
       </b-col>
       <b-col></b-col>
     </b-row>
+    <b-modal ref="myModalRef" title="Producto Nuevo">
+      <p>Producto creado correctamente!</p>
+    </b-modal>
   </b-container>
 </template>
 
@@ -44,7 +51,8 @@
         prod:"",
         cate:"",
         pre:"",
-        desc:""
+        desc:"",
+        img:""
       }
     },
     methods: {
@@ -56,21 +64,35 @@
           product:this.prod,
           category:this.cate,
           price:this.pre,
-          description: this.desc
+          description: this.desc,
+          image: this.img
 
         }
         const serverUrl = "https://kind-lime-meerkat-gear.cyclic.app/";
   
-        const response = await axios.post(
-            `${serverUrl}products/`,
-            requestBody,
-            {
-              headers: {
-                'Authorization': `Barer ${tokenAutenticacion}`
-              }
-            }
-        );
-        console.log(response);
+        try {
+        const response = await axios.post(`${serverUrl}products/`, requestBody, {
+          headers: {
+            Authorization: `Bearer ${tokenAutenticacion}`
+          }
+        });
+
+        // Show modal on success
+        if (response.status === 200) {
+          this.$refs.myModalRef.show();
+          // Clear form fields after a delay (you can adjust the delay as needed)
+          setTimeout(() => {
+            this.prod = '';
+            this.cate = '';
+            this.pre = '';
+            this.desc = '';
+            this.img = '';
+          }, 2000);
+        }
+      } catch (error) {
+        console.error('Error creating product: ', error);
+      }
+         
       }
     }
   }
