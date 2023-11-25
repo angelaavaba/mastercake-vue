@@ -3,9 +3,11 @@
     <b-sidebar visible id="sidebar-1" title="Sidebar" shadow>
      Ventanas de catalogos
      <br> 
-     <router-link to="dashboard/categorias">Catalogo de Categorias</router-link>
+     <router-link :to="{name: 'CatalogoCategorias'}">Catalogo de Categorias</router-link>
      <br>
-     <router-link to="dashboard/productos">Catalogo de Productos</router-link>
+     <router-link :to="{name: 'CatalogoProductos'}">Catalogo de Productos</router-link>
+     <br>
+     <router-link :to="{name: 'ListaProductos'}">Lista de Productos</router-link>
     </b-sidebar>
     <router-view></router-view>
   </div>

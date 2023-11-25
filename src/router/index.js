@@ -27,13 +27,20 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/DashboardView.vue'),
     children:[
       {
+      name: 'CatalogoCategorias',
       path:'categorias',
       component: () => import(/* webpackChunkName: "about" */ '../views/CategoriasView.vue')
       }, 
       {
+        name: 'CatalogoProductos',
         path:'productos',
         component: () => import(/* webpackChunkName: "about" */ '../views/ProductosView.vue')
-        }
+      },
+      {
+        name: 'ListaProductos',
+        path:'listaProductos',
+        component: () => import(/* webpackChunkName: "about" */ '../views/ProductosListView.vue')
+      }
     ]
   }
 ]
