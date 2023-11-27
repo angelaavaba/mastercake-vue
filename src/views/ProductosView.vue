@@ -26,6 +26,8 @@
             </b-form-group>
             <br>
             <b-button type="submit" variant="primary">Crear Producto</b-button>
+            <br>
+            <button class="btn btn-danger" @click="goToListProducts">Lista de Productos</button>
           </b-form>
         </b-card>
       </b-col>
@@ -76,7 +78,7 @@
             Authorization: `Bearer ${tokenAutenticacion}`
           }
         });
-
+        
         // Show modal on success
         if (response.status === 200) {
           this.$refs.myModalRef.show();
@@ -93,8 +95,12 @@
         console.error('Error creating product: ', error);
       }
          
-      }
+      },
+      goToListProducts() {
+      this.$router.push({ name: 'ListaProductos' });
     }
+    }
+    
   }
   </script>
   
