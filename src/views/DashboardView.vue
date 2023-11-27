@@ -8,6 +8,8 @@
      <router-link :to="{name: 'CatalogoProductos'}">Catalogo de Productos</router-link>
      <br>
      <router-link :to="{name: 'ListaProductos'}">Lista de Productos</router-link>
+     <br>
+     <router-link :to="{name: 'ListaCategorias'}">Lista de Productos</router-link>
     </b-sidebar>
     <router-view></router-view>
   </div>

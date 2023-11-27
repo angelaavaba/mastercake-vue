@@ -40,6 +40,11 @@ const routes = [
         name: 'ListaProductos',
         path:'listaProductos',
         component: () => import(/* webpackChunkName: "about" */ '../views/ProductosListView.vue')
+      },
+      {
+        name: 'ListaCategorias',
+        path:'listaCategorias',
+        component: () => import(/* webpackChunkName: "about" */ '../views/CategoriasListView.vue')
       }
     ]
   }
