@@ -4,7 +4,7 @@
      <h2 class="d-inline-block border-bottom pb-2 text-white">Lista de Categorias</h2>
      <br>
    </div>
-   <div class="table-responsive">
+   <div class="table-responsive"  v-if="categories.length > 0">
      <table class="table table-bordered table-hover rounded-lg">
        <thead class="thead-dark">          
          <tr>
@@ -12,6 +12,7 @@
            <th scope="col">Imagen</th>
            <th scope="col">Categoría</th>
            <th scope="col">Descripción</th>
+           <th scope="col">Acciones</th>
          </tr>
        </thead>
        <tbody>
@@ -40,11 +41,15 @@
        </button>  
      </td>
          </tr>
-       </tbody>
+       </tbody> 
      </table>
+      </div>
+      <div v-else class="text-center">
+            <img src="https://res.cloudinary.com/dppyim1qy/image/upload/v1701116824/empty_state_qxw60z.png" alt="No Categories" style="max-width: 400px; max-height: 400px;" class="my-3">
+            <p class="text-white" style="font-size: 40px;">No existen categorías para mostrar.</p>
+        </div>
      <br>
      <button class="btn btn-primary float-right" @click="goToCreateCategory">Crear Categoría</button>
-   </div>
    </div>
  </template>
  
@@ -194,7 +199,9 @@
  .text-center {
  padding-bottom: 20px;
 }
-
+.large-text {
+    font-size: 20px;
+}
 .table-responsive {
  margin-top: 20px;
  padding: 20px;

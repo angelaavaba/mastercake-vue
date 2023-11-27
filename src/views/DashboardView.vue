@@ -1,11 +1,11 @@
 <template>
   <div>
     <b-sidebar visible id="sidebar-1" title="Sidebar" shadow>
-     Ventanas de catalogos
+     Menú de opciones
      <br> 
-     <router-link :to="{name: 'CatalogoCategorias'}">Catalogo de Categorias</router-link>
+     <router-link :to="{name: 'CatalogoCategorias'}">Crear Categoria</router-link>
      <br>
-     <router-link :to="{name: 'CatalogoProductos'}">Catalogo de Productos</router-link>
+     <router-link :to="{name: 'CatalogoProductos'}">Crear Producto</router-link>
      <br>
      <router-link :to="{name: 'ListaProductos'}">Lista de Productos</router-link>
      <br>

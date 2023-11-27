@@ -4,7 +4,7 @@
       <h2 class="d-inline-block border-bottom pb-2 text-white">Lista de Productos</h2>
       <br>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" v-if="products.length > 0">
       <table class="table table-bordered table-hover rounded-lg">
         <thead class="thead-dark">          
           <tr>
@@ -53,9 +53,13 @@
           </tr>
         </tbody>
       </table>
+        </div>
+        <div v-else class="text-center">
+            <img src="https://res.cloudinary.com/dppyim1qy/image/upload/v1701116824/empty_state_qxw60z.png" alt="No Products" style="max-width: 400px; max-height: 400px;" class="my-3">
+            <p class="text-white" style="font-size: 40px;">No existen productos para mostrar.</p>
+        </div>
       <br>
       <button class="btn btn-primary float-right" @click="goToCreateProducts">Crear Producto</button>
-    </div>
     </div>
   </template>
   
