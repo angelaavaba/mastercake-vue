@@ -44,7 +44,7 @@
           <i class="bi bi-pencil-square"></i>
         </button>
         <button class="btn btn-success" v-if="product.editing" @click="updateProduct(product)">
-          <i class="bi bi-arrow-counterclockwise"></i>
+          <i class="bi bi-box-arrow-down"></i>
         </button>
         <button class="btn btn-danger" @click="deleteProduct(product._id)">
           <i class="fas fa-trash-alt"></i> 

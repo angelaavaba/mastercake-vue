@@ -34,7 +34,7 @@
          <i class="bi bi-pencil-square"></i>
        </button>
        <button class="btn btn-success" v-if="category.editing" @click="updateCategory(category)">
-         <i class="bi bi-arrow-counterclockwise"></i>
+        <i class="bi bi-box-arrow-down"></i>
        </button>
        <button class="btn btn-danger" @click="deleteCategory(category._id)">
          <i class="fas fa-trash-alt"></i> 

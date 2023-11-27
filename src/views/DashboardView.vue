@@ -9,7 +9,7 @@
      <br>
      <router-link :to="{name: 'ListaProductos'}">Lista de Productos</router-link>
      <br>
-     <router-link :to="{name: 'ListaCategorias'}">Lista de Productos</router-link>
+     <router-link :to="{name: 'ListaCategorias'}">Lista de Categorias</router-link>
     </b-sidebar>
     <router-view></router-view>
   </div>
