@@ -67,6 +67,8 @@
         </div>
       <br>
       <button class="btn btn-primary float-right" @click="goToCreateProducts">Crear Producto</button>
+      <br>
+      <button class="btn btn-danger" @click="goToDashboard">Regresar</button>
     </div>
   </template>
   
@@ -118,6 +120,9 @@
 
       goToCreateProducts() {
       this.$router.push({ name: 'CatalogoProductos' });
+    },
+    goToDashboard() {
+      this.$router.push({ name: 'Dashboard' });
     },
     editProduct(product) {
       this.$set(product, 'editing', true);

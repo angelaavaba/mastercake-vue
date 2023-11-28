@@ -57,6 +57,8 @@
         </div>
      <br>
      <button class="btn btn-primary float-right" @click="goToCreateCategory">Crear Categoría</button>
+     <br>
+      <button class="btn btn-danger" @click="goToDashboard">Regresar</button>
    </div>
  </template>
  
@@ -109,6 +111,9 @@
      goToCreateCategory() {
      this.$router.push({ name: 'CatalogoCategorias' });
    },
+   goToDashboard() {
+      this.$router.push({ name: 'Dashboard' });
+    },
    editCategory(category) {
      this.$set(category, 'editing', true);
    },
