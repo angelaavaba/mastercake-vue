@@ -1,5 +1,12 @@
 <template>
     <div class="container my-4">
+      <div class="menu-container">
+      <b-nav>
+        <b-nav-item-dropdown text="Perfil" right>
+          <b-dropdown-item @click="logout">Cerrar Sesión</b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-nav>
+    </div>
    <div class="text-center mb-4">
      <h2 class="d-inline-block border-bottom pb-2 text-white">Lista de Categorias</h2>
      <br>
@@ -124,6 +131,10 @@
        console.error("Error al actualizar la categoria", error);
      }
    },
+   logout() {
+      localStorage.removeItem('jwt');
+      this.$router.push('/');
+    }
    }
 }
  </script>
@@ -190,6 +201,16 @@
  border-color: #8B4513;
 }
 
+.menu-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    padding: 10px;
+    background-color: white;
+}
+
+
 @media (max-width: 768px) {
  .btn-primary {
    margin-top: 15px;
@@ -206,6 +227,7 @@
  margin-top: 20px;
  padding: 20px;
 }
+
 
 }
 

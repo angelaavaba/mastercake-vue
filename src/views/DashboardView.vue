@@ -3,10 +3,6 @@
     <b-sidebar visible id="sidebar-1" title="Sidebar" shadow>
      Menú de opciones
      <br> 
-     <router-link :to="{name: 'CatalogoCategorias'}">Crear Categoria</router-link>
-     <br>
-     <router-link :to="{name: 'CatalogoProductos'}">Crear Producto</router-link>
-     <br>
      <router-link :to="{name: 'ListaProductos'}">Lista de Productos</router-link>
      <br>
      <router-link :to="{name: 'ListaCategorias'}">Lista de Categorias</router-link>
