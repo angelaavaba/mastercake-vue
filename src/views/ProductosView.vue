@@ -10,7 +10,8 @@
             </b-form-group>
             <br>
             <b-form-group label="Categoría">
-              <b-form-input v-model="cate" placeholder="Captura la categoría de tu producto" required></b-form-input>
+              <b-form-select v-model="selectedCategoryId" :options="categoryOptions" required placeholder="Seleccione una categoría">
+            </b-form-select>
             </b-form-group>
             <br>
             <b-form-group label="Precio">
@@ -51,11 +52,15 @@
     data() {
       return {
         prod:"",
-        cate:"",
         pre:"",
         desc:"",
-        img:""
+        img:"",
+        categories: [], 
+        selectedCategoryId: ''
       }
+    },
+    created(){
+      this.fetchCategories();
     },
     methods: {
       async nuevoProducto(event){
@@ -64,7 +69,7 @@
         const requestBody = {
 
           product:this.prod,
-          category:this.cate,
+          category:this.selectedCategoryId,
           price:this.pre,
           description: this.desc,
           image: this.img
@@ -98,9 +103,32 @@
       },
       goToListProducts() {
       this.$router.push({ name: 'ListaProductos' });
-    }
-    }
-    
+      },
+      
+      async fetchCategories() {
+  try {
+    const tokenAutenticacion = localStorage.getItem("jwt");
+    const response = await axios.get('https://kind-lime-meerkat-gear.cyclic.app/category', {
+      headers: {
+        Authorization: `Bearer ${tokenAutenticacion}`
+      }
+    });
+    this.categories = response.data;
+  } catch (error) {
+    console.error('Error fetching categories: ', error);
+  }
+}
+    },
+
+    computed: {
+      categoryOptions() {
+      return this.categories.map(category => ({
+      value: category._id, 
+      text: category.name
+    }));
+  }
+  }
+      
   }
   </script>
   

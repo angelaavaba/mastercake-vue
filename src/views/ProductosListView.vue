@@ -38,9 +38,9 @@
       <td v-if="product.editing">
         <b-form-input v-model="product.description" />
       </td>
-      <td v-if="!product.editing">{{ product.category }}</td>
+      <td v-if="!product.editing">{{ product.category ? product.category.name : "N/a" }}</td>
       <td v-if="product.editing">
-        <b-form-input v-model="product.category" />
+      <b-form-select v-model="product.category" :options="categoryOptions" required placeholder="Seleccione una categoría"></b-form-select>
       </td>
       <td v-if="!product.editing">{{ product.price }}</td>
       <td v-if="product.editing">
@@ -80,11 +80,13 @@
     name: 'ProductsListView',
     data() {
       return {
-        products: []
+        products: [],
+        categoryOptions: []
       }
     },
     async created() {
       await this.fetchProducts();
+      await this.fetchCategories();
     },
     methods: {
       async fetchProducts() {
@@ -131,7 +133,7 @@
       const tokenAutenticacion = localStorage.getItem("jwt");
       const serverURL = "https://kind-lime-meerkat-gear.cyclic.app/";
       try {
-        axios.put(`${serverURL}products/${product._id}`, {
+          await axios.put(`${serverURL}products/${product._id}`, {
           product: product.product,
           category: product.category,
           price: product.price,
@@ -143,11 +145,29 @@
           }
         });
         product.editing = false; // Deshabilitar modo de edición
-        this.fetchProducts(); // Actualizar la lista de ligas
+        await this.fetchProducts(); // Actualizar la lista de ligas
       } catch (error) {
         console.error("Error al actualizar el producto:", error);
       }
     },
+
+    async fetchCategories() {
+  try {
+    const tokenAutenticacion = localStorage.getItem("jwt");
+    const response = await axios.get('https://kind-lime-meerkat-gear.cyclic.app/category', {
+      headers: {
+        Authorization: `Bearer ${tokenAutenticacion}`
+      }
+    });
+    this.categoryOptions = response.data.map(category => ({
+      value: category._id,
+      text: category.name
+    }));
+  } catch (error) {
+    console.error('Error fetching categories: ', error);
+  }
+},
+
     logout() {
       localStorage.removeItem('jwt');
       this.$router.push('/');
